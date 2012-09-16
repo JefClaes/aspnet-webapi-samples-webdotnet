@@ -13,7 +13,12 @@ namespace Batman.Rest.Server
         {
             var config = new HttpSelfHostConfiguration("http://localhost:8080");
 
-            config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional });
+            config.Routes.MapHttpRoute(
+                "DefaultRoute",
+                "api/{controller}/{id}",
+                new { id = RouteParameter.Optional });
+
+            config.Formatters.Add(new BatFormatter());
 
             using (var server = new HttpSelfHostServer(config))
             {
