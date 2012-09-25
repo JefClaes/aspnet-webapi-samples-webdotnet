@@ -25,7 +25,7 @@ namespace Batman.Rest.Server
                 throw new HttpResponseException(
                     new HttpResponseMessage(HttpStatusCode.NotFound));
 
-            var link = new Link() { Value = "HighestQuantity", Href = new Uri(Url.Link("DefaultRoute", new { id = _batStore.GetByMostQuantity().Id })) };
+            var link = new Link() { Rel = "HighestQuantity", Href = new Uri(Url.Link("DefaultRoute", new { id = _batStore.GetByMostQuantity().Id })) };
 
             batResource.Links = new List<Link>();
             batResource.Links.Add(link);
@@ -45,7 +45,7 @@ namespace Batman.Rest.Server
 
         public void Put(string id, BatResource batResource)
         {
-            throw new NotImplementedException();
+            throw new HttpResponseException(HttpStatusCode.NotImplemented);
         }
 
         public HttpResponseMessage Delete(string id)
