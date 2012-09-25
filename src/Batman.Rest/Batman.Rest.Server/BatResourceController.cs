@@ -45,7 +45,7 @@ namespace Batman.Rest.Server
 
         public void Put(string id, BatResource batResource)
         {
-            throw new NotImplementedException();
+            throw new HttpResponseException(HttpStatusCode.NotImplemented);
         }
 
         public HttpResponseMessage Delete(string id)
