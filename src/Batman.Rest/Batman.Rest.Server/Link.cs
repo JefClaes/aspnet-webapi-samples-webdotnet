@@ -7,7 +7,7 @@ namespace Batman.Rest.Server
 {
     public class Link
     {
-        public string Value { get; set; }
+        public string Rel { get; set; }
 
         public Uri Href { get; set; }
     }
