@@ -25,7 +25,7 @@ namespace Batman.Rest.Server
                 throw new HttpResponseException(
                     new HttpResponseMessage(HttpStatusCode.NotFound));
 
-            var link = new Link() { Value = "HighestQuantity", Href = new Uri(Url.Link("DefaultApi", new { id = _batStore.GetByMostQuantity().Id })) };
+            var link = new Link() { Value = "HighestQuantity", Href = new Uri(Url.Link("DefaultRoute", new { id = _batStore.GetByMostQuantity().Id })) };
 
             batResource.Links = new List<Link>();
             batResource.Links.Add(link);
@@ -38,7 +38,7 @@ namespace Batman.Rest.Server
             _batStore.AddBatResource(batResource);
 
             var response = Request.CreateResponse<BatResource>(HttpStatusCode.Created, batResource);
-            response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = batResource.Id }));
+            response.Headers.Location = new Uri(Url.Link("DefaultRoute", new { id = batResource.Id }));
 
             return response;
         }
