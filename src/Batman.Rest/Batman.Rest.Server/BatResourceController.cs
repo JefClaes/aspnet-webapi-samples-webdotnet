@@ -40,7 +40,7 @@ namespace Batman.Rest.Server
             _batStore.Add(batResource);
 
             var response = Request.CreateResponse<BatResource>(HttpStatusCode.Created, batResource);
-            response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = batResource.Id }));
+            response.Headers.Location = new Uri(Url.Link("DefaultRoute", new { id = batResource.Id }));
 
             return response;
         }
