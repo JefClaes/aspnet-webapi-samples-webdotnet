@@ -21,19 +21,14 @@ namespace Batman.Rest.Server
         public BatResource GetById(string id)
         {
             return _resources.Where(r => r.Id == id).FirstOrDefault();
-        }
+        }       
 
-        public BatResource GetByMostQuantity()
-        {
-            return _resources.OrderByDescending(r => r.Quantity).FirstOrDefault();
-        }
-
-        public void AddBatResource(BatResource batResource)
+        public void Add(BatResource batResource)
         {
             _resources.Add(batResource);
         }
 
-        public bool UpdateBatResource(string id, BatResource batResource)
+        public bool Update(string id, BatResource batResource)
         {
             int index = _resources.FindIndex(r => r.Id == batResource.Id);
             if (index == -1)
@@ -45,7 +40,7 @@ namespace Batman.Rest.Server
             return true;
         }
 
-        public void DeleteBatResource(string id)
+        public void Delete(string id)
         {
             _resources.RemoveAll(r => r.Id == id);
         }

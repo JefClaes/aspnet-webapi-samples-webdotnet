@@ -25,17 +25,19 @@ namespace Batman.Rest.Server
                 throw new HttpResponseException(
                     new HttpResponseMessage(HttpStatusCode.NotFound));
 
-            var link = new Link() { Rel = "HighestQuantity", Href = new Uri(Url.Link("DefaultRoute", new { id = _batStore.GetByMostQuantity().Id })) };
+            // Naive implementation
+            var nextId = Convert.ToInt32(id) + 1;
+            var next = new Uri(Url.Link("DefaultApi", new { id = nextId }));
 
             batResource.Links = new List<Link>();
-            batResource.Links.Add(link);
+            batResource.Links.Add(new Link() { Href = next, Method = HttpMethod.Get, Rel = "Next" });
 
             return batResource;
         }
 
         public HttpResponseMessage Post(BatResource batResource)
         {
-            _batStore.AddBatResource(batResource);
+            _batStore.Add(batResource);
 
             var response = Request.CreateResponse<BatResource>(HttpStatusCode.Created, batResource);
             response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = batResource.Id }));
@@ -50,7 +52,7 @@ namespace Batman.Rest.Server
 
         public HttpResponseMessage Delete(string id)
         {
-            _batStore.DeleteBatResource(id);
+            _batStore.Delete(id);
 
             return new HttpResponseMessage(HttpStatusCode.NoContent);
         }
