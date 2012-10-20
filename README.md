@@ -1,11 +1,12 @@
 # ASP.NET Web API Samples
 
-+ Server
+## Server
 ++ Resources
 ++ Identifiers
 ++ Verbs
 ++ Representations
 ++ Hypermedia
-+ Client
+## Client
+
 
 
