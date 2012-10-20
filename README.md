@@ -6,6 +6,7 @@
 + Verbs
 + Representations
 + Hypermedia
+
 ## Client
 
 
